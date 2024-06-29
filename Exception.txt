@@ -1,0 +1,166 @@
+															Exception
+															---------
+-> Exception an event , that interrupts the normal flow of the program.
+-> Exception can handled by using 'try-catch' block. Try block contain the 'Risky code' and catch block contain the 'Handling code'.
+Ex-  try{
+		Risky code
+	}catch{
+		Handling code
+	}				
+
+Qus- What is different between checked and Unchecked Exception ?
+
+Ans- 
+					checked
+-> if we cann't handle the exception by using if and else then that exception is called checked exception.
+-> It is execute as compiletime itself.
+Ex- 
+1. ClassNotFoundException
+2. IllegalAccessException
+3. SQL Exception
+4. IO Exception
+   a> FileNotFoundException
+   b> EOFException
+   
+                  Unchecked
+-> if we can handle the exception by using if and else then that exception is called Unchecked exception.
+-> It is execute as runtime itself.
+Ex-
+1. ArithmeticException
+2. NullPointerException
+3. NegativeArraySizeException
+4. ClassCostException
+5. IndexOutOfBoundException
+   a> ArrayIndexOutOfBoundException
+   b> StringIndexOutOfBoundException
+   
+ 
+
+Qus- What is different between final , finally and finalize ?
+
+Ans- 
+final :---
+-----
+-> final is a modifier applicable for classes , method and variable.
+-> if a class declered as final then we cann't extends that class.
+-> if a method declered as final then we cann't override that method.
+-> if a variable declered as final then it will becomes constant.
+
+finally :---
+-------
+-> finally is a block.
+-> finally is a block always associted with try-catch to maintain clean-up-code.
+Ex-
+	try{
+		Risky code;
+	}catch{
+		Handling code;
+	}finally{
+		clean-up-code;
+	}
+	
+finalize :---
+--------
+-> finalize is a method. Before an object is garbage collected , the runtime System calls its finalize() method.
+
+
+Qus- What is different between throw and throws exception ?
+
+Ans- 
+1. throw is followed by an instance variable but throws is followed by exception class names.
+2. throw is used inside method body to involke an exception but throws is uesd in method decleration(signature).
+3. you cann't throw multiple exception but you can declare multiple exception.
+
+
+														Customized or User Defined Exception
+														------------------------------------
+-> Some time to meet programmer requirement we can define our own exception. Such type of exceptions are called Customized or User Defined Exception.
+-> User-defined exception must extends Exception class.
+
+Ex- 
+        class MyException extends Exception{
+			int a;
+			MyException(int b){
+				a = b;
+			}
+			public String toString(){
+				return ("Exception Number =" +a);
+			}
+		}
+		class Test{
+			public static void main(String args[]){
+				try{
+					throw new MyException(2);
+				}catch(MyException e){
+					System.out.println(e);
+				}
+			}
+		}
+		
+
+												Exception Handling
+												------------------
+1.Ex-
+     class A{
+		public static void main(String args[]){
+			int a = 10;
+			 a = a/0;
+		}
+	 }				
+		RE : ArithmeticException 
+		
+Note :--
+    We can handle by using try and catch block.Every no handle exception load for AbNormal Termination.
+
+2.Ex-
+			class Test{
+				public static void main(String args[]){
+					int a = 10;
+				try{
+			
+					a = a/0;
+				}catch(ArithmeticException e){
+					System.out.println("ArithmeticException");
+					System.out.println(e);
+				}
+			}
+
+3.Ex-
+			class Test{
+				public static void main(String args[]){
+					int a = 10, b=0;
+				if(b != 0){
+			
+					a = a/0;
+					System.out.println("If Statement");
+				}else{
+					System.out.println("ArithmeticException");
+					
+				}
+			}
+
+4. Ex- NullPointerException
+
+			class Test{
+				void m(){
+					System.out.println("m() method");
+				}
+			}	
+			class ExceptionDemo{
+				public static void main(String args[]){
+					Test t = new Test();
+					t.m();
+				}
+			}
+			
+5. Ex- ArrayIndexOutOfBoundException
+			class ArrayDemo{
+				int ar[] = {1,2,3,4};
+				try{
+					ar[4] = 7;
+				}catch(ArrayIndexOutOfBoundException e){
+					System.out.println(e);
+				}
+			}
+			
+			

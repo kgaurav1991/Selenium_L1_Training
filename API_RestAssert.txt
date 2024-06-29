@@ -1,0 +1,16 @@
+Web services : 
+
+Services that can be accessed over network are called web services.
+
+different b/w web application and web services:--
+1. web application are meant for users and to be accessed in browser having human readable formate whereas web services are meant for application
+ to access data into the XML,JSON etc.
+ 
+2. Web applications always use http/https protocol,whereas traditional web services uses SOAP(Simple object access protrocol).
+Recently REST(Representational state transfer) is getting popularity that is am architecture style and almost all time run on http/https protocol.
+
+3.web application are capable to maintain user session , web services are st
+
+https://resful-booker.herokuapp.com/
+
+https://fakerestapi.azurewebsites.net/index.html

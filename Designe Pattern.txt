@@ -1,0 +1,81 @@
+															Design Pattern
+															---------------
+															
+-> Singlton class followed design pattern.
+-> Singlton class only one Object will hold and only one Object will return.
+-> Singlton class performance by :--
+1. private constructor.
+2. static method.
+3. static block.
+
+Ex- 
+    class Singlton{
+		private static Singlton ds;
+		private Singltondemo(){
+			System.out.println("Object Created");
+		}
+		public static Singltondemo getObj(){
+			if(ds == null){
+				ds = new Singltondemo();
+			}
+			return ds;
+		}
+	}
+	public class Test{
+		public static void main(String[] args){
+			Singlton obj = Singltondemo.getObj();
+			Singlton obj1 = Singltondemo.getObj();
+				System.out.println(obj);
+				System.out.println(obj1
+		}
+	}
+	
+	output : 123@ABC  (Same Object Created)
+			 123@ABC
+			 
+															Factory Design Pattern
+															----------------------
+															
+Ex-
+			//Car.java
+				public class Car{
+					public interface run();
+				}
+			
+			// BMW.java
+				public class BMW implements Car{
+					public void run(){
+						System.out.println(BMW Car Module);
+					}
+				}
+		
+			// Audi.java
+				public class Audi implements Car{
+					public void run(){
+						System.out.println(Audi Car Module);
+					}
+				}
+				
+			//carFactory.java
+				public class carFactory{
+					public car carFactory(String carType){
+						if(carType == null){
+							return null;
+						}
+						else if(BMW.equalIgnoreCase(carType)){
+							return new BMW();
+						}
+						else if(Audi.equalIgnoreCase(carType)){
+							return new Audi();
+						}
+					}
+				}
+				
+			//MainDeom.java
+			    public class MainDeom{
+					public static void main(String[] args){
+						String carType = args[0];
+						carType carfactory = new carFactory();
+						Car car = carFactory.createFactory(carType);
+					}
+				}	

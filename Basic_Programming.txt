@@ -1,0 +1,78 @@
+														Basic Programming
+														-----------------
+												
+1.Ex- Swap two number using thired variable
+
+			int a = 10, b = 20, c;
+				c = a;
+				a = b; 
+				b = c;
+				
+			System.out.println(a+ "---"+b);	
+			
+			
+2.Ex- Swap two number without using thired variable
+
+			int a = 10, b = 20;
+				a = a+b;
+				b = a-b;
+				a = a-b;
+			System.out.println(a+ "---"+b);
+
+	OR
+			int a = 1, b = 2;
+				a = (a+b) - (b = a);
+			System.out.println(a+ "---"+b);
+
+3.Ex- Prime Number programming
+				
+			int nun = 7;
+			boolean flag = false;
+				for(int i = 2; i <= num; i++){
+					if(num%2 == 0){
+						flag = true;
+						break;
+					}
+				}
+				if(!flag)
+					System.out.println(num+" is a prime number");
+				else
+					System.out.println(num+ " is not a prime number");
+					
+					
+4.Ex- 	Number reverse 
+
+			int num = 1234, sum=0;
+			while(num != 0){
+				int r = num % 10;
+				sum = sum * 10 + r;
+				num = num / 10;
+			}
+			System.out.println(sun+ " reverse the number");
+	
+
+5.Ex- String reverse 
+		
+		String s = "Welcome";
+		char ch[] = s.toCharArray();
+			for(int i = ch.length-1; i >= 0; i--){
+				System.out.println(ch[i]);
+			}
+			
+6.Ex-	String and Word reverse 
+
+			String s = "My name is Kumar Gaurav";
+			StringBuffer sb = new StringBuffer(s);
+			sb.reverse();
+			System.out.println(sb);
+			
+OR
+			String s = "My name is Kumar Gaurav";
+			int size = s.length();
+			while(size > 0){
+			   System.out.println(s.charAt(size-1));
+			   size--;
+			}
+			
+			
+7.Ex- 

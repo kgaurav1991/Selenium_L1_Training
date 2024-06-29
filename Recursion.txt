@@ -1,0 +1,53 @@
+															Recursion
+															---------
+															
+-> Recursion is a basic programming technique you can use in java,which a method calls itself to solve some problem. A method that uses this technique is Recursion.
+
+Ex-
+	   public class Test{
+			public static int factorial(int num){
+				if(num == 1)
+					return 1;
+				else
+					return (num * factorial(num-1));
+			}
+			public static void main(String[] args){
+				System.out.println("factorial Number :"+factorial(5));
+			}
+	   }															
+	   
+2.Ex-
+		 public class Demo{
+				static int sum = 0;
+			public static int add(int num){
+				while(num != 0){
+					int a = num%10;
+					sum = sum + a;
+					num = num / 10;
+					add(num);
+				}
+				return sum;
+			}
+			}
+			public static void main(String[] args){
+				int n = 123;
+				int k = new Demo().add(n);
+				System.out.println(k);
+			}
+	   }	
+	   
+3.Ex-
+		class Test1{
+			public static int print(int num) {
+				if (num <= 100) {
+				System.out.println(num);
+					print(num + 1);
+				}
+			return num;
+
+				}
+
+			public static void main(String[] args) {
+					print(1);
+				    }
+		}	

@@ -1,0 +1,1370 @@
+
+
+Write a programe to create a class Book with the following 
+- attributes : isbn,title,author,price
+- methos : 
+	1. Initialize the data memebers through parameterized constrctor
+	2. displaydetails() to display the details of the book
+	3. discountedprice() : pass the discount percent,calculate the discount on price and find the ammount to be paid after discount
+task:
+ Create an object book , initialize the book and dispaly the details along with the discounted price	
+ 
+ 
+ public class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private double price;
+
+    // Parameterized constructor
+    public Book(String isbn, String title, String author, double price) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    // Method to display book details
+    public void displayDetails() {
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Price: $" + price);
+    }
+
+    // Method to calculate discounted price
+    public double discountedPrice(double discountPercent) {
+        double discountAmount = (discountPercent / 100) * price;
+        double discountedPrice = price - discountAmount;
+        return discountedPrice;
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of the Book class
+        Book book = new Book("978-3-16-148410-0", "The Great Gatsby", "F. Scott Fitzgerald", 15.99);
+
+        // Displaying book details
+        System.out.println("Book Details:");
+        book.displayDetails();
+
+        // Calculating and displaying discounted price with 10% discount
+        double discount = 10;
+        double discountedPrice = book.discountedPrice(discount);
+        System.out.printf("Discounted Price (%.0f%% off): $%.2f\n", discount, discountedPrice);
+    }
+}
+
+
+
+
+OR Inherent concept 
+
+// Base class Book
+class Book {
+    protected String isbn;
+    protected String title;
+    protected String author;
+    protected double price;
+
+    // Parameterized constructor to initialize data members
+    public Book(String isbn, String title, String author, double price) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    // Method to display details of the book
+    public void displayDetails() {
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Price: $" + price);
+    }
+}
+
+// Derived class DiscountedBook inheriting from Book
+class DiscountedBook extends Book {
+    // Constructor invoking base class constructor
+    public DiscountedBook(String isbn, String title, String author, double price) {
+        super(isbn, title, author, price);
+    }
+
+    // Method to calculate discounted price
+    public double discountedPrice(double discountPercent) {
+        double discountAmount = (discountPercent / 100) * price;
+        double discountedPrice = price - discountAmount;
+        return discountedPrice;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of DiscountedBook
+        DiscountedBook book = new DiscountedBook("978-3-16-148410-0", "The Great Gaurav", "Author Name Kumar", 22.99);
+
+        // Displaying book details
+        System.out.println("Book Details:");
+        book.displayDetails();
+
+        // Calculating and displaying discounted price with 10% discount
+        double discount = 10;
+        double discountedPrice = book.discountedPrice(discount);
+        System.out.printf("Discounted Price (%.0f%% off): $%.2f\n", discount, discountedPrice);
+    }
+}
+
+
+	-------------------------------------------------------------------------------------------
+	Assignment 1:--
+	
+	create an abstract class instrument which is having the abstract function play.
+	create three more sub classes from Instrument which is piano, Flute , Guitar.
+	Override the play method inside all three classes printing a message 
+	
+	"Piano is playing tan tan tan tan " for Piano class
+	"Flute is playing toot toot toot toot " for Flute class
+	"Guitar is playing tin tin tin tin " for Guitar class
+
+you must not allow the user to declare an object of Instrument class.
+
+Create an array of 10 Instruments
+Assign different type of instrument to Instrument reference.
+Check for the polymorphic behaviore of play method
+
+Asn- 
+// Abstract class Instrument
+abstract class Instrument {
+    // Abstract method play
+    abstract void play();
+}
+
+// Subclass Piano
+class Piano extends Instrument {
+    // Override play method
+    void play() {
+        System.out.println("Piano is playing tan tan tan tan");
+    }
+}
+
+// Subclass Flute
+class Flute extends Instrument {
+    // Override play method
+    void play() {
+        System.out.println("Flute is playing toot toot toot toot");
+    }
+}
+
+// Subclass Guitar
+class Guitar extends Instrument {
+    // Override play method
+    void play() {
+        System.out.println("Guitar is playing tin tin tin tin");
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Create an array of 10 Instrument references
+        Instrument[] instruments = new Instrument[10];
+        
+        // Assign different types of instruments to Instrument references
+        instruments[0] = new Piano();
+        instruments[1] = new Flute();
+        instruments[2] = new Guitar();
+        instruments[3] = new Piano();
+        instruments[4] = new Flute();
+        instruments[5] = new Guitar();
+        instruments[6] = new Piano();
+        instruments[7] = new Flute();
+        instruments[8] = new Guitar();
+        instruments[9] = new Piano();
+        
+        // Check for polymorphic behavior of play method
+        for (Instrument instrument : instruments) {
+            instrument.play();
+        }
+    }
+}
+
+Assignment 2:--
+
+Write an interface called Playable, with a method 
+void play();
+Let this interface be placed in a package called music.
+Write a class called Veena which implements playable interface . let this class be placed in a package music.string
+Write a class called Saxophone which implements playable interface. let this class be placed in a package music.wind
+
+Write another class Test in a package called Live. then,
+a. Create an instance of Veena and call paly() metrhod 
+b. Create an instance of Saxophone and call play() method
+c. Place the above instance in a variable of type Playable and then call Play() 
+ 
+ 
+ Asn-1: different class created
+ 
+ // File: Playable.java
+package music;
+
+// Interface Playable
+public interface Playable {
+    void play();
+}
+
+
+2:---
+// File: Veena.java
+package music.string;
+import music.Playable;
+
+// Class Veena implementing Playable interface
+public class Veena implements Playable {
+    public void play() {
+        System.out.println("Veena is playing");
+    }
+}
+
+3:
+// File: Saxophone.java
+package music.wind;
+import music.Playable;
+
+// Class Saxophone implementing Playable interface
+public class Saxophone implements Playable {
+    public void play() {
+        System.out.println("Saxophone is playing");
+    }
+}
+4:--
+// File: Test.java
+package Live;
+import music.Playable;
+import music.string.Veena;
+import music.wind.Saxophone;
+
+// Test class
+public class Test {
+    public static void main(String[] args) {
+        // a. Create an instance of Veena and call play() method
+        Veena veena = new Veena();
+        veena.play();
+        
+        // b. Create an instance of Saxophone and call play() method
+        Saxophone saxophone = new Saxophone();
+        saxophone.play();
+        
+        // c. Place the above instance in a variable of type Playable and then call play()
+        Playable instrument1 = new Veena();
+        instrument1.play();
+        
+        Playable instrument2 = new Saxophone();
+        instrument2.play();
+    }
+}
+------------------------------------------------------------------------------------------------
+Assignment 1: ---
+
+Write a program to take care of Number Format Exception if user enters values other that integer for calculating average marks of two students. 
+The name of the students and marks in 3 subjects are passed as arguments while executing the program using java
+
+
+Ans- 
+
+public class CalculateAverage {
+    public static void main(String[] args) {
+        if (args.length != 8) {
+            System.out.println("Usage: java CalculateAverage <Student1 Name> <Subject1 Mark> <Subject2 Mark> <Subject3 Mark> <Student2 Name> <Subject1 Mark> <Subject2 Mark> <Subject3 Mark>");
+            return;
+        }
+
+        try {
+            // Student 1
+            String student1Name = args[0];
+            int student1Subject1Mark = Integer.parseInt(args[1]);
+            int student1Subject2Mark = Integer.parseInt(args[2]);
+            int student1Subject3Mark = Integer.parseInt(args[3]);
+
+            // Student 2
+            String student2Name = args[4];
+            int student2Subject1Mark = Integer.parseInt(args[5]);
+            int student2Subject2Mark = Integer.parseInt(args[6]);
+            int student2Subject3Mark = Integer.parseInt(args[7]);
+
+            // Calculate averages
+            double student1Average = (student1Subject1Mark + student1Subject2Mark + student1Subject3Mark) / 3.0;
+            double student2Average = (student2Subject1Mark + student2Subject2Mark + student2Subject3Mark) / 3.0;
+
+            // Output
+            System.out.println("Average marks for " + student1Name + ": " + student1Average);
+            System.out.println("Average marks for " + student2Name + ": " + student2Average);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter valid integer marks for subjects.");
+        }
+    }
+}
+
+
+Assignment 2:----
+
+Write a Division class with 2 data members x and y . The class has a method called divide which return x/y values. if the value of y is 0 
+then the user should get a message that "The division operation cannot be done as the divisor is 0".
+create a user defined InvaliedDivisor exception which will be thrown when the divisor value is 0 using Java program
+
+Ans-
+
+// Define a custom exception class for invalid divisor
+class InvalidDivisorException extends Exception {
+    public InvalidDivisorException(String message) {
+        super(message);
+    }
+}
+
+// Define the Division class
+class Division {
+    private int x;
+    private int y;
+
+    // Constructor
+    public Division(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Method to perform division
+    public double divide() throws InvalidDivisorException {
+        if (y == 0) {
+            throw new InvalidDivisorException("The division operation cannot be done as the divisor is 0");
+        }
+        return (double) x / y;
+    }
+}
+
+// Main class to test the Division class
+public class Main {
+    public static void main(String[] args) {
+        // Test case 1: valid division
+        Division division1 = new Division(10, 2);
+        try {
+            System.out.println("Result of division 10 / 2: " + division1.divide());
+        } catch (InvalidDivisorException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Test case 2: invalid division
+        Division division2 = new Division(10, 0);
+        try {
+            System.out.println("Result of division 10 / 0: " + division2.divide());
+        } catch (InvalidDivisorException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+Assignment 1
+
+Create an Employee class with the related attributes and behaviors.
+create one mone class EmployeeDB which has the following methods.
+a. boolean addEmployee(Employee e)
+b. boolean deleteEmployee(int eCode)
+c. Employee[] listAll()
+Use an ArrayList which will be used to store the employees and use enumeration/iterator to process the employees.
+
+Ans-
+ 
+ import java.util.ArrayList;
+import java.util.Iterator;
+
+class Employee {
+    private int employeeCode;
+    private String name;
+    private String department;
+    private double salary;
+
+    public Employee(int employeeCode, String name, String department, double salary) {
+        this.employeeCode = employeeCode;
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    // Getters and setters
+    public int getEmployeeCode() {
+        return employeeCode;
+    }
+
+    public void setEmployeeCode(int employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    // toString() method to represent employee details
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeCode=" + employeeCode +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+}
+
+class EmployeeDB {
+    private ArrayList<Employee> employees;
+
+    public EmployeeDB() {
+        this.employees = new ArrayList<>();
+    }
+
+    // Method to add an employee
+    public boolean addEmployee(Employee e) {
+        return employees.add(e);
+    }
+
+    // Method to delete an employee by employee code
+    public boolean deleteEmployee(int eCode) {
+        Iterator<Employee> iterator = employees.iterator();
+        while (iterator.hasNext()) {
+            Employee employee = iterator.next();
+            if (employee.getEmployeeCode() == eCode) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Method to list all employees
+    public Employee[] listAll() {
+        return employees.toArray(new Employee[0]);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        EmployeeDB employeeDB = new EmployeeDB();
+
+        // Adding employees
+        employeeDB.addEmployee(new Employee(1001, "John Doe", "Engineering", 60000));
+        employeeDB.addEmployee(new Employee(1002, "Jane Smith", "HR", 55000));
+        employeeDB.addEmployee(new Employee(1003, "Alice Johnson", "Finance", 65000));
+
+        // Listing all employees
+        System.out.println("All employees:");
+        Employee[] allEmployees = employeeDB.listAll();
+        for (Employee employee : allEmployees) {
+            System.out.println(employee);
+        }
+
+        // Deleting an employee
+        System.out.println("\nDeleting employee with employee code 1002:");
+        employeeDB.deleteEmployee(1002);
+
+        // Listing all employees after deletion
+        System.out.println("\nAll employees after deletion:");
+        allEmployees = employeeDB.listAll();
+        for (Employee employee : allEmployees) {
+            System.out.println(employee);
+        }
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------
+Assignment 2
+
+Create Collection called TreeSet which is capable of storing String object.The Collection should have the following capabilities
+a. reverse the elements of the Collection.
+b . iterate the elements of the TreeSet.
+c. checked if a particular element exists or not
+
+Ans-
+
+import java.util.TreeSet;
+import java.util.Iterator;
+
+public class Main {
+    public static void main(String[] args) {
+        TreeSet<String> stringTreeSet = new TreeSet<>();
+
+        // Adding elements to the TreeSet
+        stringTreeSet.add("Apple");
+        stringTreeSet.add("Banana");
+        stringTreeSet.add("Orange");
+        stringTreeSet.add("Mango");
+
+        // Printing the original TreeSet
+        System.out.println("Original TreeSet:");
+        System.out.println(stringTreeSet);
+
+        // Reversing the elements of the TreeSet
+        TreeSet<String> reversedTreeSet = new TreeSet<>(stringTreeSet.descendingSet());
+        System.out.println("\nReversed TreeSet:");
+        System.out.println(reversedTreeSet);
+
+        // Iterating the elements of the TreeSet
+        System.out.println("\nIterating through TreeSet:");
+        Iterator<String> iterator = stringTreeSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        // Checking if a particular element exists in the TreeSet
+        String elementToCheck = "Banana";
+        if (stringTreeSet.contains(elementToCheck)) {
+            System.out.println("\n\"" + elementToCheck + "\" exists in the TreeSet.");
+        } else {
+            System.out.println("\n\"" + elementToCheck + "\" does not exist in the TreeSet.");
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
+ Assignment HashMap 1 :
+ 
+ Create a Collection called HashMap which is capable of storing String object. The program should have the following abilities.
+ a. Check if a particular key exits or not 
+ b. Check if a particular value exits or not
+ c. Use Iterator to loop through the map key set 
+ 
+ Ans-
+ 
+ import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class HashMapCollection {
+    private Map<String, String> hashMap;
+
+    public HashMapCollection() {
+        hashMap = new HashMap<>();
+    }
+
+    // Method to add a key-value pair to the HashMap
+    public void add(String key, String value) {
+        hashMap.put(key, value);
+    }
+
+    // Method to check if a particular key exists
+    public boolean containsKey(String key) {
+        return hashMap.containsKey(key);
+    }
+
+    // Method to check if a particular value exists
+    public boolean containsValue(String value) {
+        return hashMap.containsValue(value);
+    }
+
+    // Method to loop through the map key set using Iterator
+    public void iterateKeys() {
+        Iterator<String> iterator = hashMap.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            System.out.println("Key: " + key + ", Value: " + hashMap.get(key));
+        }
+    }
+
+    public static void main(String[] args) {
+        HashMapCollection collection = new HashMapCollection();
+
+        // Adding key-value pairs
+        collection.add("key1", "value1");
+        collection.add("key2", "value2");
+        collection.add("key3", "value3");
+
+        // Checking if a particular key exists
+        System.out.println("Contains key 'key2': " + collection.containsKey("key2"));
+        System.out.println("Contains key 'key4': " + collection.containsKey("key4"));
+
+        // Checking if a particular value exists
+        System.out.println("Contains value 'value1': " + collection.containsValue("value1"));
+        System.out.println("Contains value 'value4': " + collection.containsValue("value4"));
+
+        // Iterating through the map key set
+        System.out.println("Iterating through keys:");
+        collection.iterateKeys();
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+Assignment 1:
+
+Write a program to display the contents of a file line by line.
+
+Ans-
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReadFileLineByLine {
+    public static void main(String[] args) {
+        String filePath = "example.txt"; // Change this to the path of your file
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            int lineNumber = 1;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("Line " + lineNumber + ": " + line);
+                lineNumber++;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+    }
+}
+
+
+Assignment 2:
+
+Write a program to 1. data object 2. a double object and 3. a long object to file and again reading it back from file.
+
+Ans-
+
+import java.io.*;
+
+public class ObjectToFile {
+    public static void main(String[] args) {
+        // Objects to write to file
+        Data dataObject = new Data(10, "hello");
+        Double doubleObject = 3.14;
+        Long longObject = 1000L;
+
+        // Writing objects to file
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("objects.dat"))) {
+            outputStream.writeObject(dataObject);
+            outputStream.writeObject(doubleObject);
+            outputStream.writeObject(longObject);
+            System.out.println("Objects written to file successfully.");
+        } catch (IOException e) {
+            System.err.println("Error writing objects to file: " + e.getMessage());
+        }
+
+        // Reading objects from file
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("objects.dat"))) {
+            Data dataRead = (Data) inputStream.readObject();
+            Double doubleRead = (Double) inputStream.readObject();
+            Long longRead = (Long) inputStream.readObject();
+            System.out.println("Data object read from file: " + dataRead);
+            System.out.println("Double object read from file: " + doubleRead);
+            System.out.println("Long object read from file: " + longRead);
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error reading objects from file: " + e.getMessage());
+        }
+    }
+}
+
+class Data implements Serializable {
+    private int number;
+    private String text;
+
+    public Data(int number, String text) {
+        this.number = number;
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "number=" + number +
+                ", text='" + text + '\'' +
+                '}';
+    }
+}
+------------------------------------------------------------------------------------------------------------
+Java 8 Assignment
+
+Create an array List of Employee (id,name,address,salary) objects and retrieve objects from Array List by using forEach() method of Iterable interface.
+
+Ans-
+import java.util.ArrayList;
+import java.util.List;
+
+public class Employee {
+    private int id;
+    private String name;
+    private String address;
+    private double salary;
+
+    public Employee(int id, String name, String address, double salary) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.salary = salary;
+    }
+
+    // Getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        // Create an ArrayList of Employee objects
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee(1, "John Doe", "123 Main St", 50000));
+        employeeList.add(new Employee(2, "Jane Smith", "456 Elm St", 60000));
+        employeeList.add(new Employee(3, "Bob Johnson", "789 Oak St", 70000));
+
+        // Retrieve objects from the ArrayList using forEach() method
+        System.out.println("Employees:");
+        employeeList.forEach(employee -> System.out.println(employee));
+    }
+}
+
+
+Assignment 2:--
+
+Create two inferface Piano & Guitar with single default method void play() with different implementations. Add single implementations class 
+Instrument for both the interface . Solve method name ambiguity in Instrument class by using two different approches.
+
+Ans-
+interface Piano {
+    default void play() {
+        System.out.println("Playing the piano...");
+    }
+}
+
+interface Guitar {
+    default void play() {
+        System.out.println("Playing the guitar...");
+    }
+}
+
+class Instrument implements Piano, Guitar {
+    // Approach 1: Specify which interface's default method to use
+    @Override
+    public void play() {
+        // Using Piano's default method
+        Piano.super.play(); // Using the default method from Piano interface
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Instrument instrument = new Instrument();
+        instrument.play(); // Output will be "Playing the piano..."
+    }
+}
+-------------------------------------------------------------------------------------------------------
+Automate the below using the selenium webdriver and junit5 using the chrome browser.
+step 1: launch the application .https://naveenautomationlabs.com/opencart
+step 2: click on "My Account" link on top right comer of home page and click on login. 
+Step 3: Enter address and password and click on "login " button. 
+step4: click on monitors under components. 
+step 5: Add "Apple chema 30" to the cart. 
+step 6: Add all the mandatory options and click on Add to cart. 
+Step 7: Verify the items and total in the cart.
+
+
+Ans-
+
+pom.xml
+
+<dependencies>
+    <!-- Selenium WebDriver -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.1.0</version>
+    </dependency>
+    <!-- WebDriverManager -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.1.3</version>
+    </dependency>
+    <!-- JUnit 5 -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.8.0-M1</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.8.0-M1</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ECommerceWorkflowTest {
+
+    private WebDriver driver;
+    private static final String BASE_URL = "https://example.com"; // Replace with actual URL
+
+    @BeforeEach
+    public void setUp() {
+        // Setup WebDriver
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testECommerceWorkflow() {
+        // Step 1: Launch the application
+        driver.get(BASE_URL);
+
+        // Step 2: Click on "My Account" link and then "Login"
+        WebElement myAccountLink = driver.findElement(By.xpath("//a[@class='my-account-link']"));
+        myAccountLink.click();
+
+        WebElement loginLink = driver.findElement(By.xpath("//a[contains(text(), 'Login')]"));
+        loginLink.click();
+
+        // Step 3: Enter credentials and click on "Login" button
+        WebElement usernameField = driver.findElement(By.id("username"));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.name("login"));
+
+        usernameField.sendKeys("your_username"); // Replace with actual username
+        passwordField.sendKeys("your_password"); // Replace with actual password
+        loginButton.click();
+
+        // Step 4: Navigate to "Monitors" under components
+        WebElement componentsMenu = driver.findElement(By.xpath("//a[contains(text(), 'Components')]"));
+        componentsMenu.click();
+
+        WebElement monitorsLink = driver.findElement(By.xpath("//a[contains(text(), 'Monitors')]"));
+        monitorsLink.click();
+
+        // Step 5: Add "Apple chema 30" to the cart
+        WebElement addToCartButton = driver.findElement(By.xpath("//a[contains(text(), 'Add to Cart')]"));
+        addToCartButton.click();
+
+        // Step 6: Add all mandatory options and click on "Add to Cart"
+        // Assuming there are checkboxes, dropdowns, etc. to select options
+        // Implement selection of options as per your website's UI
+
+        // Example:
+        // WebElement optionCheckbox = driver.findElement(By.xpath("//input[@id='option_checkbox_id']"));
+        // optionCheckbox.click();
+
+        // After selecting options, click on "Add to Cart"
+        WebElement addToCartButtonFinal = driver.findElement(By.xpath("//button[@id='button-cart']"));
+        addToCartButtonFinal.click();
+
+        // Step 7: Verify items and total in the cart
+        WebElement cartLink = driver.findElement(By.xpath("//a[contains(text(), 'Shopping Cart')]"));
+        cartLink.click();
+
+        // Verify items
+        List<WebElement> cartItems = driver.findElements(By.xpath("//div[@class='cart-info']//td[@class='name']"));
+        assertTrue(cartItems.size() > 0, "No items found in the cart");
+
+        // Verify total
+        WebElement cartTotal = driver.findElement(By.xpath("//div[@class='cart-total']//strong"));
+        assertEquals("Expected Total Amount", cartTotal.getText().trim());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Close the browser
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------
+
+Write TestNG test method to find the company with maximum current price. print the company name and the maximum current price.Hint : Use Customized Xpath
+1. Go To page: http://demo.guru99.com/test/web-table-element.php
+2. Find the total number of rows and the columns in the stock table.
+3. Traverse the table and find the company with maximum current price.
+4. Print the company name and the maximum current price of the company.Since the stock price is not constant, every time you run the test,different
+	company may have maximum current price. 
+	
+Ans-
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import java.util.List;
+
+public class MaxCurrentPriceTest {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // Set up WebDriver (assuming ChromeDriver is used)
+        System.setProperty("webdriver.chrome.driver", "path_to_your_chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void findCompanyWithMaxCurrentPrice() {
+        // Navigate to the web page
+        driver.get("http://demo.guru99.com/test/web-table-element.php");
+
+        // Find the table element
+        WebElement table = driver.findElement(By.xpath("//table[@class='dataTable']"));
+
+        // Find all rows in the table
+        List<WebElement> rows = table.findElements(By.xpath(".//tbody/tr"));
+
+        String maxCompany = "";
+        double maxPrice = Double.MIN_VALUE;
+
+        // Iterate through each row
+        for (WebElement row : rows) {
+            // Extract company name and current price
+            String company = row.findElement(By.xpath("./td[1]")).getText();
+            String priceStr = row.findElement(By.xpath("./td[4]")).getText();
+            double price = Double.parseDouble(priceStr.replace("$", "").replace(",", ""));
+
+            // Update maxCompany and maxPrice if current price is greater
+            if (price > maxPrice) {
+                maxPrice = price;
+                maxCompany = company;
+            }
+        }
+
+        // Print the company with maximum current price
+        System.out.println("Company with maximum current price:");
+        System.out.println("Company Name: " + maxCompany);
+        System.out.println("Maximum Current Price: $" + maxPrice);
+    }
+
+    @AfterClass
+    public void tearDown() {
+        // Close the browser
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+-------------------------------------------------------------------------------------------------------------------	
+KSRTC Login functionality and forgot password functionality verification with a user is not registered with KSRTC.
+Follow the Page Object Module Design pattern and use data driver testing
+1. open Url : https://ksrtc.in/oprs-web/ Main page of KSRTC website is open. Verify the phone number 080-26252626 is present in the main page.
+ Url should be configured in config.properties file.	
+2. Click on Sign in current url is : https://ksrtc.in/oprs-web/login/show.do. Login form with user name and password is displayed.
+3.fill the user name and password user should be able to fill details . Take user name and password from a excel file. use TestNG @DataProvider annotation.
+4. click on login buitton : if the user is not a registered user,then upon clicking the login button , the current page url must be :
+https://ksrtc.in/oprs-web/login/perform.do and verify that login incorrect . please try again message is displayed .
+Capture the screenshot and store in screenshot folder.
+5. click on forgot password user should be able to enter email . Take email from a excel file . use TestNG @dataProvider annotation.
+6. click on submit button if the entered email id is not valid , then verify login name not found in the system. capture the screenshot and store in screenshot
+folder. using in Selenium java
+
+ 
+ Ans-
+ // LoginPage.java
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+    private WebDriver driver;
+    
+    private By usernameInput = By.id("userName");
+    private By passwordInput = By.id("password");
+    private By loginButton = By.id("submitBtn");
+    private By forgotPasswordLink = By.linkText("Forgot Password?");
+    
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
+    
+    public void setUsername(String username) {
+        driver.findElement(usernameInput).sendKeys(username);
+    }
+    
+    public void setPassword(String password) {
+        driver.findElement(passwordInput).sendKeys(password);
+    }
+    
+    public void clickLogin() {
+        driver.findElement(loginButton).click();
+    }
+    
+    public void clickForgotPassword() {
+        driver.findElement(forgotPasswordLink).click();
+    }
+}
+
+----------------------------------------------------
+
+// Use data provider to test with multiple sets of data.
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class KSRTCLoginTest {
+
+    private WebDriver driver;
+    private LoginPage loginPage;
+    private String baseUrl;
+
+    @BeforeClass
+    public void setUp() throws IOException {
+        // Load config.properties file
+        Properties props = new Properties();
+        FileInputStream fis = new FileInputStream("config.properties");
+        props.load(fis);
+        baseUrl = props.getProperty("url");
+
+        // Set up WebDriver (assuming ChromeDriver is used)
+        System.setProperty("webdriver.chrome.driver", "path_to_your_chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        // Initialize Page Objects
+        driver.get(baseUrl);
+        loginPage = new LoginPage(driver);
+    }
+
+    @Test(dataProvider = "loginData")
+    public void testLogin(String username, String password) {
+        // Perform login
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
+        loginPage.clickLogin();
+   
+        // Assertion: Verify login functionality (example assertion)
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed");
+    }
+
+    @Test
+    public void testForgotPassword() {
+        // Click on Forgot Password link
+        loginPage.clickForgotPassword();
+
+        // Assertion: Verify forgot password functionality (example assertion)
+        Assert.assertTrue(driver.getCurrentUrl().contains("forgotpassword"), "Forgot password page not loaded");
+    }
+
+    @DataProvider(name = "loginData")
+    public Object[][] loginData() {
+        // Test data for login
+        return new Object[][] {
+            {"valid_username", "valid_password"},
+            {"invalid_username", "invalid_password"}
+            // Add more test data sets as needed
+        };
+    }
+
+    @AfterClass
+    public void tearDown() {
+        // Close the browser
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+// KSRTCLoginTest.java
+-----------------------
+ 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.*;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+public class KSRTCLoginTest {
+
+    WebDriver driver;
+    HomePage homePage;
+    LoginPage loginPage;
+    ForgotPasswordPage forgotPasswordPage;
+
+    @BeforeClass
+    public void setup() {
+        // WebDriver setup
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Initialize Page Objects
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        forgotPasswordPage = new ForgotPasswordPage(driver);
+
+        // Open URL
+        driver.get(Config.getProperty("url"));
+    }
+
+    @Test(priority = 1)
+    public void verifyPhoneNumberOnHomePage() {
+        Assert.assertTrue(homePage.isPhoneNumberDisplayed("080-26252626"),
+                "Phone number 080-26252626 is not displayed on the homepage.");
+    }
+
+    @Test(priority = 2, dataProvider = "loginData")
+    public void verifyLoginWithInvalidCredentials(String username, String password) {
+        loginPage.navigateToLoginPage();
+        loginPage.login(username, password);
+        Assert.assertTrue(loginPage.isLoginErrorDisplayed(),
+                "Expected login error message 'login incorrect. please try again.' not displayed.");
+        loginPage.takeScreenshot("login_error");
+    }
+
+    @Test(priority = 3, dataProvider = "forgotPasswordData")
+    public void verifyForgotPasswordInvalidEmail(String email) {
+        loginPage.navigateToForgotPasswordPage();
+        forgotPasswordPage.enterEmail(email);
+        Assert.assertTrue(forgotPasswordPage.isEmailNotFoundErrorDisplayed(),
+                "Expected message 'login name not found in the system.' not displayed.");
+        forgotPasswordPage.takeScreenshot("forgot_password_error");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+
+    @DataProvider(name = "loginData")
+    public Object[][] getLoginData() throws IOException {
+        return ExcelUtils.getTestData("loginTestData.xlsx", "loginData");
+    }
+
+    @DataProvider(name = "forgotPasswordData")
+    public Object[][] getForgotPasswordData() throws IOException {
+        return ExcelUtils.getTestData("forgotPasswordData.xlsx", "forgotPasswordData");
+    }
+}
+
+//ExcelUtils.java
+
+import org.apache.poi.ss.usermodel.*;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class ExcelUtils {
+
+    public static Object[][] getTestData(String filePath, String sheetName) throws IOException {
+        FileInputStream file = new FileInputStream(filePath);
+        Workbook workbook = WorkbookFactory.create(file);
+        Sheet sheet = workbook.getSheet(sheetName);
+
+        int rowCount = sheet.getLastRowNum();
+        int colCount = sheet.getRow(0).getLastCellNum();
+        Object[][] data = new Object[rowCount][colCount];
+
+        for (int i = 0; i < rowCount; i++) {
+            Row row = sheet.getRow(i + 1); // Skip header row
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = row.getCell(j, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                data[i][j] = cell.toString().trim();
+            }
+        }
+
+        workbook.close();
+        file.close();
+
+        return data;
+    }
+}
+
+// Page Objects Implementation (Sample for HomePage.java)
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class HomePage {
+
+    WebDriver driver;
+
+    By phoneNumberLocator = By.xpath("//div[@id='header_homeContactInfo']//a[contains(text(),'080-26252626')]");
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public boolean isPhoneNumberDisplayed(String phoneNumber) {
+        return driver.findElement(phoneNumberLocator).isDisplayed() &&
+                driver.findElement(phoneNumberLocator).getText().contains(phoneNumber);
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. create test case as shown in Assignment4 for testing the feature of registration functionality of - https://demo.guru99.com/test/network/register.php
+Write positve and negative test cases. Appropriate validation has to be done in each step, wherever applicable.
+
+
+// RegistrationNegativeTest.java
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class RegistrationNegativeTest {
+
+    WebDriver driver;
+    String baseURL = "https://demo.guru99.com/test/network/register.php";
+
+    @BeforeClass
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(baseURL);
+    }
+
+    @Test
+    public void testRegistrationWithInvalidData() {
+        // Fill registration form with invalid data
+        driver.findElement(By.name("emailid")).sendKeys("invalidemail");
+        driver.findElement(By.name("uname")).sendKeys("testuser123");
+        driver.findElement(By.name("psw")).sendKeys("short");
+        driver.findElement(By.name("submit")).click();
+
+        // Verify validation error messages
+        WebElement emailError = driver.findElement(By.xpath("//span[@id='message5' and contains(text(),'valid email')]"));
+        WebElement passwordError = driver.findElement(By.xpath("//span[@id='message4' and contains(text(),'Password must be more')]"));
+        
+        Assert.assertTrue(emailError.isDisplayed(), "Email validation error message not displayed.");
+        Assert.assertTrue(passwordError.isDisplayed(), "Password validation error message not displayed.");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+// RegistrationNegativeTest.java
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class RegistrationNegativeTest {
+
+    WebDriver driver;
+    String baseURL = "https://demo.guru99.com/test/network/register.php";
+
+    @BeforeClass
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(baseURL);
+    }
+
+    @Test
+    public void testRegistrationWithInvalidData() {
+        // Fill registration form with invalid data
+        driver.findElement(By.name("emailid")).sendKeys("invalidemail");
+        driver.findElement(By.name("uname")).sendKeys("testuser123");
+        driver.findElement(By.name("psw")).sendKeys("short");
+        driver.findElement(By.name("submit")).click();
+
+        // Verify validation error messages
+        WebElement emailError = driver.findElement(By.xpath("//span[@id='message5' and contains(text(),'valid email')]"));
+        WebElement passwordError = driver.findElement(By.xpath("//span[@id='message4' and contains(text(),'Password must be more')]"));
+        
+        Assert.assertTrue(emailError.isDisplayed(), "Email validation error message not displayed.");
+        Assert.assertTrue(passwordError.isDisplayed(), "Password validation error message not displayed.");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

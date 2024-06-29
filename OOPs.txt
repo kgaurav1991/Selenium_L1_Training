@@ -1,0 +1,346 @@
+                                                    OOPs(Object Oriented Programming)
+													---------------------------------
+-> object Oriented Programming Model.
+-> Module means way of writing the code.
+-> In c word based on structure programming module.
+Note : C Support global variable.
+	   A variable that is declered by inside the class out side the method is called global variable.
+-> In C , There are no proper binding between data memeber (variable) and memeber function.
+-> Maintance of project is very defficult and time consuming.
+-> In Java work base on object Oriented Programming module.
+-> In Java, There are proper binding between data memeber(variable) and memeber function.
+-> Maintance of project is very easy and less time.
+
+
+OOPs following Some Rules:---
+-------------------------
+1. Encapsulation
+2. Inheritance 
+3. Polymorphism
+4. Abstraction 
+
+1. Encapsulation :----
+	# The proper binding between data memeber and memeber function in a single unit is called Encapsulation.
+	# The proper binding data and coding part is called Encapsulation.
+	# It is recommended all the data memeber should be private.
+	
+Ex-
+		class Employee{
+			int id;
+			String name;
+			int age;
+			
+			//setter and getter method
+			
+			public void setId(int id){
+				this.id = id;   
+			}
+			public int getId(){
+				return id;
+			}
+			public void setName(String name){
+				this.name = name;   
+			}
+			public int getName(){
+				return name;
+			}
+			public void setAge(int age){
+				this.age = age;   
+			}
+			public int getAge(){
+				return age;
+			}
+		public static void main(String args[]){
+			Employee e = new Employee();
+				e.setId(100);
+				e.setName("Kumar");
+				e.setAge(32);
+				
+			System.out.println(e.getId()+ "---" +e.getName()+ "---" +e.getAge());	
+		}	
+		}
+		output : 100 --- Kumar ---- 32
+	
+Encapsulation in the Two Ways:---
+------------------------------
+1. Method Level Encapsulation.
+2. Class Level Encapsulation.
+
+1. Method Level Encapsulation:---
+	The process of binding data throught method level variable and method coding part is called as method Level Encapsulation.
+	
+2. Class Level Encapsulation:---
+   	The process of binding data throught Class Level variable and method coding part is called as Class Level Encapsulation.
+	
+	
+2. Inheritance:---	
+   ------------
+   # Inheritance is defined IS-A Releation ship between supper(Parent) Class and sub(Child) Class extends and Implements keywod in Java.   
+   # The process of getting variable and method from one Class to another Class is called Inheritance.
+   
+ Ex- 
+		class Parent{
+			public void m(){
+				System.out.println("Super class");
+			}
+			public class Child extends Parent{
+				public void m(){
+					System.out.println("Sub class");
+				}
+			}	
+			public static void main(String args[]){
+				Parent  p = new Parent();
+				   p.m(); // Super class
+				   p.m(); // CE
+				Parent p1 = new Child();
+					p1.m(); //Super class
+					p1.m(); // CE
+				Child c = new Child();
+					c.m(); //Super class
+					c.m(); //Sub class
+				Child c1 = new Parent();
+					c1.m(); //CE
+					c1.m();	//CE
+		}
+	}
+
+3. Polymorphism :---
+   ------------
+   # The ability to exist in many perform multiple action.
+   # Polymorphism is a Greek word poly means many and morphism means structure.
+   # Single entity and multiple behevioure are called Polymorphism.
+
+There are two type of Polymorphism :---
+----------------------------------
+1. Static Polymorphism.
+2. Dynamic Polymorphism.
+
+1. Static Polymorphism:--
+	# Defining multiple method with the same name by changing the parameter in a same Class is called Static Polymorphism.
+	# It is execute at compile time itself.
+	# It is execute at early binding.
+
+Ex- method Overloading
+
+	class Test{
+			public void m(){
+				System.out.println("Over loading");
+			}
+			public void m(int a){
+				System.out.println("Hello");
+			}
+			public static void main(String args[]){
+				Test t = new Test();
+					t.m();  // Over loading
+					t.m(10); // Hello
+		}
+	} 
+
+2. Dynamic Polymorphism:---
+   # Defining multiple method with the same name by same parameter in a different Class is called Dynamic Polymorphism.
+   # adding same method names with 
+   # It is execute at runtime itself.
+   # It is execute at late binding.
+   
+Ex- method Overriding
+
+	class Parent{
+			public void m(){
+				System.out.println("Supper class");
+			}
+			public class Child extends Parent{
+				public void m(){
+					System.out.println("Sub class");
+				}
+			}	
+			public static void main(String args[]){
+				Parent  p = new Parent();
+				   p.m(); // Super class
+				 
+				Child c = new Child();
+					c.m(); // Super class -- Sub class
+					
+				
+		}
+	} 
+
+
+
+4. Abstraction:---
+   ------------
+	# Hiding the implementation part and showing the funcallity is called Abstraction.
+	# A class that is declered as Abstraction is known as abstract class.
+	# abstract class can have abstract & non-abstract method.
+	# abstract class doesn't support multiple Inheritance.
+	# abstract class can have final , non-final , static and non-static variable.
+	# All Servlet method is abstract class.
+
+Ex-
+		abstract class Shape{
+			abstract void draw();
+		}
+		class Rectangle extends Shape{
+			void draw(){
+				System.out.println("Drawing Rectangle");
+		    }
+        }
+		class Circle extends Shape{
+			void draw(){
+				System.out.println("Drawing Circle");
+			}
+		}
+		public class TestAbstract{
+				public static void main(String args[]){
+					Shape s new Circle();
+					s.draw();
+				}
+		}
+		
+		
+		
+		
+		 
+Qus-> What is class ?
+
+Ans-> It is keyword , which is used to defined Userdefine data type in Java.
+Ex-
+			class Employee{
+				=========
+			}
+		
+Qus- Why do we need class ?
+
+Ans- To provide proper binding between data memeber and memeber function, we need class.
+
+
+Qus- What is Object ?
+
+Ans- Object is instance of class.
+	# Any dynamic memory can be allocated as instance.
+	
+Ex-
+    Test t = new Test();
+	
+	
+Qus- Why do we need Object ?
+
+Ans- In order to allocate memory for non-static memeber of a class , we need Object.
+
+
+
+															Constructor
+															-----------
+-> It is also a funcallity , which will execute automatualy at creating the Object.
+-> A constructor is a bit code that allows you to create object from a class.
+-> A constructor overloading is a technique in java , which a class can have any number of constructor that defined. 
+
+Ex- 
+			class Student{
+				int id;
+				String name;
+				
+				Student(int i, String n){
+					id = i;
+					name = n;
+				}
+				void display(){
+					System.out.println(id+ "---" +name);
+				}
+				public static void main(String args[]){
+					Student s = new Student(111, "Sneha");
+						s.display();
+				}
+			}
+			Output : 111 --- Sneha
+			
+															This 
+															-----
+-> This is keyword , which is used to explicity call the constructor.
+-> This is always point to current object.
+-> This is first line of constructor.
+
+Ex- 
+		class Employee{
+			int id;
+			String name;
+			int age;
+			
+			public void setId(int id)
+				this.id = id;   
+			}
+			public void setName(String name){
+				this.name = name;   
+			}
+			public void setAge(int age)
+				this.age = age;
+
+		}		
+		
+															New
+															----
+-> new is an operator , which allocate the memory dynamicaly(non-static) .
+Ex- 
+				Employee e = new Employee();
+				
+				
+Qus- Different between constructor and method in java ?
+
+Ans- 
+1. constructor name must be same as the class name but Method name may or may not be same as class name.
+2. constructor not have return type but Method must have return type.
+3. constructor is involked implicity but Method is involked explicity.
+4. constructor is used to initialize the static of an object but Method is used to behevioureof an object.
+
+
+Qus- Different between this and Super keyword in java ?
+
+Ans-
+1. this is always point to current object but It is keyword used to store supper class object.
+2. this is first line of constructor but super  keyword used to seperate supper class and sub class memeber if both have same name.
+3. this is keyword , which is used to explicity call the constructor but it must be used explicity if supper class and sub class memeber have same name.
+
+Ex- Super Keyword
+         class Parent{
+				String name;
+		 }
+		 class Child extends Parent{
+			String name;
+			void detail(){
+				Super.name = "parent";
+				name = "Child";
+			}
+		 }
+       				
+				
+Qus- Can you use both this() and super() in a constructor ?
+
+Ans- No, because both super() and this() must be first statement inside a constructor. Hence we cann't use them together.
+
+
+Qus- What is different between interface and abstract class ? 
+
+Ans- 
+1. abstract class can have abstract and non-abstract method but interface can have only abstract method.
+2. abstract class can have final , non-final , static and non-static variable but interface can have only final and static variable.
+3. Servlet is an interface and All Servlet method is abstract class.
+Ex- init();
+	service();
+	destroyed();
+4. Inside interface we cann't declare instance and static block other wise we will get compile time error  but Inside abstract class, we can declare instance and static block.
+Ex- interface Test{												Ex-  abstract class Test{ 
+		{																	{
+		}																	}
+		static{															static{	
+			}																}
+	}																	}
+	  Incorrect                                                       correct 
+	  
+5. Inside interface we cann't declare constructor but Inside abstract class we can declare constructor,which will be executed at the time of child object creation.
+Ex-  interface Test{                                          Ex- abstract class Test{	  
+	  Test(){														Test(){
+	    }																}
+		
+	  }																}
+	  Incorrect														correct
+	  
+	  

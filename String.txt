@@ -1,0 +1,320 @@
+													String
+													------
+Qus- What is String in java?
+
+Ans- Generally, String is a sequence of characters. 
+-> String class is used to create String Object. String is a state of an Object.
+-> String class is immutable because we cann't change the data type variable.
+-> String class is immutable because we cann't change the state of behiver.
+
+# There are two ways to create String Object:--
+1. By String literal
+2. By new keyword
+
+1. String literal is created by using double quotes.
+
+Ex-  String s = "Welcome";    
+	 String s1 = "Welcome";													
+	 
+	 
+2. JVM will create a new String Object in normal heap memory and literal "Welcome" will be placed in the constant pool.
+
+Ex-   String s = new String("Welcome");
+
+												String class
+												------------
+The String class represents character String. All String literal in java programs, such as "Welcome" are implemented as instance of this class.
+
+Note: create empty String Object , not null String Object.
+Ex-
+			class StringDemo{
+				public static void main(String args[]){
+					String s = new String();
+					System.out.println(s);
+				}
+			}										
+		Output: No Output
+		
+Ex-    String s = null;
+			System.out.println(s); // null
+			
+Ex-   String s = null;
+		int count = s.length();
+		System.out.println(count); // NullPointerException
+		
+		
+Ex-	
+			class StringDemo{
+				public static void main(String args[]){
+					String s = "abc";
+					// String Copy
+					String s1 = new String(s); // Object String
+					// create String with direct String literal
+					String s2 = new String("bbb");
+					//String assignment
+					String s3 = s2;
+					
+					System.out.println(s); //abc
+					System.out.println(s1); //abc
+					System.out.println(s2); // bbb
+					System.out.println(s3); //bbb
+					
+					System.out.println(s == s1); // false
+					System.out.println(s2 == s3); //true
+				}
+			}		
+			
+Qus- What is different between String and StringBuffer ?
+
+Ans- 
+1. String class is immutable but StringBuffer class is mutable.
+2. String class override the equals() method of Object class but StringBuffer class doesn't override  the equals() method of Object class.
+
+Ex- String                                                          Ex- StringBuffer
+	  String s = new String("abc");                               		StringBuffer sb = new StringBuffer("abc");
+		s.concat("Software");                                               sb.append("Software");
+		System.out.println(s); // abc Software                             System.out.println(sb); // abc Software
+		
+
+
+##  Method name in String :--
+1. length();
+2. charAt();
+3. Replace();
+4. UpperCase(),LowerCase();
+5. concat();
+6. valueOf();
+7. trim();
+8. sptil();
+
+Ex-
+		StringBuffer sb = new StringBuffer();
+			System.out.println(sb.capacity()); //16
+			
+		StringBuffer sb1 = new StringBuffer(123);
+			System.out.println(sb1.capacity()); // 123
+
+		StringBuffer sb2 = new StringBuffer("Abc");
+			System.out.println(sb2.capacity()); // 19
+
+		StringBuffer sb3 = new StringBuffer();
+			System.out.println(sb3.capacity());	 //19
+
+
+Qus- What is different between StringBuffer and StringBuilder ?
+
+Ans- 
+1.  StringBuffer is synchronized i.e thread safe . It means two threads cann't call the method of StringBuffer simultaneouly. but
+	StringBuilder is non-synchronized i.e not threads safe. It means two threads call the method of StringBuilder simultaneouly.
+	
+2. StringBuffer relatively performance is low but StringBuilder relatively performance is high.
+
+3. StringBuffer introduct is 1.0 version but StringBuilder introduct is 1.5 version.
+
+Ex- 
+		class StringBufferDemo{
+			public static void main(String args[]){
+			
+				System.out.println("--- Append ---");
+				StringBuffer sb = new StringBuffer("abc");
+				StringBuffer sb1 = new StringBuffer("d");
+				System.out.println(sb);  //abcd
+				System.out.println(sb1); // abcd
+				System.out.println(sb == sb1); // true
+				
+				System.out.println("--- Insert ---");
+				StringBuffer sb2 = new StringBuffer("1234567");
+				sb2.insert(4, '/');
+				System.out.println(sb2);  // 1234/567
+				sb2.insert(0,'abc');
+				System.out.println(sb1); // abc1234567
+				
+				System.out.println("--- Capacity ---"); 
+				StringBuffer sb3 = new StringBuffer();
+				System.out.println("Default Capacity :"+sb3.capacity()); // 16
+				
+				System.out.println("--- Reverse ---"); 
+				StringBuffer sb4 = new StringBuffer("Welcome");
+				System.out.println(sb4.reverse()); //emoclew
+				
+				System.out.println("--- Delete ---"); 
+				StringBuffer sb5 = new StringBuffer("Welcome To India");
+				System.out.println(sb5);
+				sb5.delete(sb5.indexOf("To"),sb5.indexOf("To")+2);
+				System.out.println(sb5); // Welcome India
+				sb5.delete(sb5.indexOf("India"),sb5.indexOf("India")+5);
+				System.out.println(sb5); // Welcome
+				
+				
+			}
+		}
+			
+			
+Qus- Write a programs without overriding method toString()..
+
+public final class Example{
+	int rollno;
+	String name;
+	String city;
+	
+	public Example(int rollno,String name, String city){
+		this.rollno = rollno;
+		this.name = name;
+		this.city = city;
+	}
+	public static void main(String args[]){
+		Example e = new Example(100,"kumar","Bikramganj");
+		Example e1 = new Example(102, "Amit" , "Sasaram");
+		
+		System.out.println(e);
+		System.out.println(e1);
+	}
+}			 
+
+output : Example@e48c1b
+		 Example@12dacd1
+
+Qus- Write a programs overriding method toString()..
+
+public final class Example{
+	int rollno;
+	String name;
+	String city;
+	
+	public Example(int rollno,String name, String city){
+		this.rollno = rollno;
+		this.name = name;
+		this.city = city;
+	}
+	public void toString(){
+		return rollno+ " : " +name+ " : "+city;
+	}
+	public static void main(String args[]){
+		Example e = new Example(100,"kumar","Bikramganj");
+		Example e1 = new Example(102, "Amit" , "Sasaram");
+		
+		System.out.println(e);
+		System.out.println(e1);
+	}
+}			 
+
+output: 100 kumar Bikramganj
+		102 Amit Sasaram
+		
+		
+		
+Qus- Write a programs to using String remove or delete of space.
+
+Ans-   String s = "Welcome To India";
+		String str = s.replaceAll("\\s"," ");
+		System.out.println(str); // WelcomeToIndia
+		
+		
+====================================================================================================================================================
+													String Programming
+													------------------
+													
+1.Ex- String Reverse programs
+
+				String s = "Kumar";
+				String s1 = " ";
+				int count = s1.length();
+
+					for(int i=count-1; i>=0; i--){
+						s1 = s1 + s.chatAt(i);
+					}
+					System.out.println(s1);
+					
+		Or 
+				String s = "Welcome";
+				char ch[] = s.toCharArray();
+				  for(int i = ch.length-1; i >= 0; i--){
+						System.out.println(ch[i]);
+				  }
+					
+					
+2.Ex- Wrod Count Programming
+
+			class StringWordCount{
+				public static int wordCount(String s1){
+					int count = 0;
+					for(int i =0; i < s1.length(); i++){
+						if(s1.chatAt(i) == 32){  // if(s1.chatAt(i) == ' ')
+							count++;
+						}
+					}
+					return count;
+				}
+				public static void main(String args[]){
+					String s = "Welcome To India";
+					int a = wordCount(s);
+					System.out.println("Word Count : "+a);
+				}
+			}	
+
+		Or
+		---
+				String s = "Welcome";
+				char ch[] = s.toCharArray();
+					int count = 0;
+					
+					for(int i = 0; i <= ch.length-1; i--){
+						count++;
+					}
+					System.out.println(count);
+										
+3.Ex- Space Count Programming
+
+			class SpaceCount{
+				public static void main(String args[]){
+					String s = "Welcome To Indian Raliways";
+					int count = 0;
+					for(int i =0; i < s.length(); i++){
+						if(s.chatAt(i) == 32){  
+							count++;
+						}
+					}
+					System.out.println("Space Count :" +count);
+				}
+			}								
+
+4.Ex- Space Remove Programming
+
+			String s = "Welcome To India";
+			String s1 = s.replaceAll("//s",' ');
+			
+				System.out.println(s1);
+				
+5.Ex- Print vowle and consent letter
+
+			class VowelConsent{
+				public static void main(String args[]){
+					String s = "kumargaurav";
+					for(int i =0; i < s.length(); i++){
+						if(s.chatAt(i) == 'a' || s.charAt(i) == 'e' || s.charAt(i) == 'i' ||  s.charAt(i) == 'o' || s.charAt(i) == 'u' ){  
+							System.out.println("Vowel letter  :" +s.charAt(i));
+						}
+						else{
+							System.out.println("Consent letter  :" +s.charAt(i));
+						}
+					}	
+				}
+			}	
+			
+6.Ex- Duplicate Count
+
+		String s = "Welcome";
+		char ch[] = s.toCharArray();
+		int count = 0;
+			for(int i = 0; i <= ch.length; i++){
+				for(int j = i+1; j <= ch.length; j++){
+					if(ch[i] == ch[j+1]){
+						System.out.println(ch[j]);
+						count++;
+						break;
+					}
+				}
+				System.out.println(count);
+			}
+			
+7.Ex- 			

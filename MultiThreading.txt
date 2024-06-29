@@ -1,0 +1,372 @@
+														MultiThreading
+														--------------
+-> 	MultiThreading is a process of executing thread simultaneously .
+Ex- graphics , video game , web server and application server.
+
+-> 	Thread is a light weight of subprocess. it is a separate path of execution.
+->  MultiThreading is a perform the task simultaneously one with other.
+
+# we can defined the thread following two ways:---
+1. By extends the thread class.
+2. By implements the runnable interface.
+
+1.Ex-   
+		class Mythread extends Thread{
+			public void run(){
+				for(int i=0; i<10; i++){
+					System.out.println("Child Thread");
+				}
+			}
+		} 
+		class ThreadDemo{
+			public.static void main(String args[]){
+				Mythread t = new Mythread();
+					t.start();
+					for(int i=0; i<5; i++){
+						System.out.println("Main Thraed");
+					}
+			}
+		}
+
+2.Ex- 
+		class Myrunnable implements Runnable{
+			public void run(){
+				for(int i=0; i<10; i++){
+					System.out.println("Child Thread");
+				}
+			}
+		}
+		class ThreadDemo{
+			public.static void main(String args[]){
+				Myrunnable r = new Myrunnable();
+				Mythread t = new Mythread(r);
+					t.start();
+					for(int i=0; i<5; i++){
+						System.out.println("Main Thraed");
+					}
+			}
+		}												MultiTasking
+														------------
+-> if we want to display the output in the from of mixture is called MultiTasking.
+Ex-   Custorme Care, GUI
+
+# There are two ways of MultiTasking :--
+1. Process base MultiTasking.
+2. Thread base MultiTasking.
+
+Process :--
+-------
+		A programe, which is under execution is called process.
+
+1.Process base MultiTasking :---
+----------------------------
+when two process execute simultaneously one with another is called Process base MultiTasking.
+
+Disadvantage of Process base MultiTasking :---
+1. Contex-of-Switching will be more.
+2. workload in a operating System in overhead.
+
+2. Thread base MultiTasking:---
+----------------------------
+when a single process part by part execute simultaneously one with other.
+
+# Disadvantage of Thread base MultiTasking:--
+1. Contex-of-Switching will be less.
+2. Workload in a operating System is less.
+
+# Life Cycle of a Thraed :---
+------------------------
+The Life Cycle of the thread in java is controlled by JVM. Thread starts are as follow:--
+1. new / Born
+2. Runnable/Ready
+3. Running
+4. dead
+
+
+	Mythread t = new Mythread();
+	
+				t.start();                if TS allocate           if run() complete
+	new/Born  -----------> Ready/Runnable --------------> Running ----------------> Dead
+	                                      process
+										  
+										  
+								
+Qus- What is different between wait() and sleep() ?
+
+Ans- 
+1. The wait() method is defined in object class but The sleep() method is defined in thread class.
+2. wait() method release the lock but sleep() method doesn't release the lock.
+
+
+Qus- What is different between run() and start() method?
+
+Ans- run() method overloading is possible and run() method overriding is not possible but start() method is both overloading and overriding possible.
+
+													Producer Consumer Problem
+													-------------------------
+-> Producer Thread can produce items to the Queue. Consumer Thread can consume items from the Queue.
+-> if Queue is empty then the Consumer thread will call wait() method on Queue Object.
+-> After producing items to the Queue produce Thread can call notify() method on the Queue Object. So that consume will get that notification.
+
+Ex- 
+				class ProducerThread{
+					produce(){
+						Synchronization(q);
+						
+						produce item to the Queue
+							q.notify();
+					}
+				}
+				
+				class ConsumerThread{
+					consumer(){
+						Synchronization(q);
+							if(q is empty){
+								q.wait();
+							}
+					}
+				}
+												
+	
+													Synchronization
+													---------------
+-> Synchronization is the module applicable only for method and block.
+-> Cann't apply for classes and variable.
+-> Synchronization keyword in java create a block of code known as Critical Section.
+-> To enter a Critical Section , a thread need to obtain the corresponding object lock.
+-> Used to solve data inconsistency proble.
+
+Ex-
+			class Test{
+				void add(int n){
+				Thread t = new Thraed();
+				for(int i=0; i<=5; i+=){
+					System.out.println(t.getName()+ " " +(n+i));
+				}
+				}
+			}
+			class Demo extends Thraed{
+				Test t = new Test();
+				public void run(){
+					t.add(10);
+				}
+			}							  
+			class syncTest{
+				public static void main(String args[]){
+					Demo d = new Demo();
+					Thraed t1 = new Thraed(d);
+					Thraed t2 = new Thraed(d);
+						t1.setName("T1");
+						t2.setName("T2");
+						
+						t1.start();
+						t2.start();
+				}
+			}
+		
+Qus- What is different between Fail-Fast iterators and Fail-Safe iterators?
+
+Ans-
+1. Fail-Fast iterators doesn't allow modifications of a collection while iterating over it. but
+													        Fail-Safe iterators allow modifications of a collection while iterating over it.
+2. There iterators throw ConcurrentModificationException if a collection is modified while iterating over it. but 
+													There iterators doesn't throw any exception if a collection is modified while iterating over it.
+3. These iterators don't require extra memory.  but    These iterators require memory to clone the collection.		
+Ex- iterators returned by Arraylist, Vector, HashMap      Ex- iterator returned by ConcurrentHashMap or CopyOnWriteArrayList
+
+
+## The iterators returned by the Arraylist,vector,HashMap etc are all Fail-Fast in nature.
+
+Ex-
+			import.java.util.*;
+			
+			public class FailFastIteratorDemo{
+				public static void main(String args[]){
+					Arraylist<Integer> list = new Arraylist<Integer>();
+						list.add(111);
+						list.add(222);
+						list.add(333);
+						
+					Iterator<Integer> it = list.iterator();
+						while(it.hasNext()){
+							Integer integer = (Integer)it.next();
+							list.add(555);
+						}
+				}
+			} 
+			
+## iterator returned by ConcurrentHashMap is a Fail-Safe iterator.			
+Ex-
+
+			import.java.util.*;
+			
+			public class FailSafeIteratorDemo{
+				public static void main(String args[]){
+					CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<Integer>();
+						list.add(1);
+						list.add(2);
+						list.add(3);
+						
+					Iterator<Integer> it = list.iterator();
+						while(it.hasNext()){
+							Integer integer = (Integer)it.next();
+							list.add(5);
+						}
+				}
+			} 
+=====================================================================================================================================================
+1.Ex-
+			class Number extends Thraed{
+				public void run(){
+					int i =0;
+					while(i < 1){
+						char j = 65;
+						while(j < 70){
+							System.out.println((i+1)+ "----" +j);
+								j++;
+								i++
+						}
+						System.out.println();
+					}
+				}
+			}
+			class Test{
+				public static void main(String args[]){
+					Thread t = new Thread();
+						t.start();
+				}
+			}
+			output:--
+					1 ---- A
+					2 ---- B
+					3 ---- C
+					4 ---- D
+					5 ---- E
+					
+2.Ex-
+		class Array extends Thread{
+			int ar[];
+			Array(int [] a){
+				this.ar = ar;
+			}
+			public void run(){
+				for(int i =0; i< ar.length; i++){
+					System.out.println(ar[i]);
+				}
+			}
+		}
+		public class ArrayDemo{
+			public static void main(String args[]){
+				int aa[] = new int[]{1,2,3,4};
+					Thread t = new Array(aa);
+						t.start();
+				}
+		}
+		output:---  1 2 3 4 
+		
+3.Ex-
+			class SharedObject{
+				public void sharedMethod(){
+					for(int i = 0; i<3; i++){
+						System.out.println(i);
+					}
+				}
+			}
+			
+			class Thread1 extends Thread{
+				SharedObject obj;
+				Thraed1(SharedObject obj){
+					this.obj=obj;
+				}
+			public void run(){
+				for(int i =0; i< 3; i++){
+					obj.sharedMethod();
+				}
+			}
+			}
+			
+			class Thread2 extends Thread{
+				SharedObject obj;
+				Thraed1(SharedObject obj){
+					this.obj=obj;
+				}
+			public void run(){
+				for(int i =0; i< 3; i++){
+					obj.sharedMethod(2);
+				}
+			}
+			}
+			
+		public class Demo{
+			public static void main(String args[]){
+					Thread1 t = new Thread1(new SharedObject());
+						t.start();
+					Thread2 th = new Thread2(new SharedObject());
+						t.start();
+						th.start();
+						System.out.println("***");
+				}
+		}
+		
+4.Ex-
+			class Demo{
+				public void demo(){
+					for(int i=0; i < 10; i++){
+						if(i%2 == 0){
+							System.out.println("Even : " +i);
+						}
+						else{
+							System.out.println("Odd :" +i);
+						}
+					}
+				}
+			}
+			class Even extends Thraed{
+				Demo obj;
+				Even(Demo obj){
+					this.obj = obj;
+				}
+				public void run(){
+					obj.demo();
+				}
+			} 
+			public class EvenOdd{
+				public static void main(String args[]){
+					Thread t = new Even(new Demo());
+						t.start();
+					
+				}
+			}
+			
+5.Ex-
+			
+			class Demo{
+				public void demo(){
+					for(int i=0; i < 10; i++){
+						int count = 0;
+						for(int j=2; j< i; j++){
+							if(i%j == 0)
+								count++;
+							
+						}
+						if(count == 0)
+						System.out.println("Prime :" +i);
+					}
+				}
+			}
+			class Prime extends Thraed{
+				Demo obj;
+				Even(Demo obj){
+					this.obj = obj;
+				}
+				public void run(){
+					obj.demo();
+				}
+			} 
+			public class EvenOdd{
+				public static void main(String args[]){
+					Thread t = new Prime(new Demo());
+						t.start();
+					
+				}
+			}	
